@@ -109,3 +109,12 @@ X homes to **max**. Y and Z home to min. The `z_probe` input is the head MCU's `
 **SD card**
 
 The bundled card has Geeetech's sample G-code plus a leftover copy of a slicer install folder (FT232 drivers, libusb). Nothing that looks like a bootloader update file.
+
+**Probe (`Level`) behaviour test** - [`logs/2026-08-22-probe-level-test.txt`](../logs/2026-08-22-probe-level-test.txt)
+
+1. Polled `M119` at ~3 Hz for 25 s while pressing the nozzle with no other commands sent: `z_probe` stayed `open` the whole time.
+2. Sent `M401` (probe deploy), then polled again while pressing: `M401` moved Z up 10 mm (`M114` Z 0 -> 10), and about 2 s later `z_probe` read `TRIGGERED` for one poll (~0.4 s), then `open` again.
+
+Working interpretation: the head MCU does not report contact until it has been armed, and Marlin's deploy step arms it (very likely a `Zero` tare pulse). Once armed a press shows on `Level`. Still unknown: whether `Level` is held for the duration of contact or is a short pulse, and whether the arm is one-shot. Needs a scope or logic analyser on ribbon pins 1 and 2 during a real `G29`, or a faster poll than `M119` can manage.
+
+If `Zero` turns out to be a simple tare pulse, the Klipper side is `[output_pin]` + `[probe]` with an `activate_gcode` that pulses it. If it is one-shot per probe, `deactivate_on_each_sample` and re-arming in `activate_gcode` covers it.

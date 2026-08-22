@@ -8,21 +8,21 @@ Source key: **M** = measured with a meter/scope, **D** = derived from Marlin out
 
 | Function | STEP | DIR | EN | UART | Driver | Src |
 |---|---|---|---|---|---|---|
-| X | | | | | TMC2209? | |
-| Y | | | | | TMC2209? | |
-| Z | | | | - | 4988ET? | |
-| E | | | | - | 4988ET? | |
+| X | | | | addr 0, no response | TMC2209 | D |
+| Y | | | | addr 3, works | TMC2209 | D |
+| Z | | | | - | 4988ET | D |
+| E | | | | - | 4988ET | D |
 
 ## Endstops and probe
 
 | Function | Pin | Pull / polarity | Src |
 |---|---|---|---|
-| X_MIN (via ribbon) | | | |
+| X endstop (`X_MIN` on ribbon, but Marlin homes X to **max**) | | | D |
 | Y_MIN | | | |
 | Z_MIN (base microswitch) | | | |
-| `Level` (probe trigger from head MCU) | | | |
+| `Level` (probe trigger from head MCU) | | Marlin `z_probe`, reads open at rest | D |
 | `Zero` (tare output to head MCU) | | | |
-| Filament runout | | | |
+| Filament runout | | reads TRIGGERED with filament loaded | D |
 
 ## Heaters, thermistors, fans
 
@@ -41,7 +41,7 @@ Source key: **M** = measured with a meter/scope, **D** = derived from Marlin out
 
 | Function | Pin | Src |
 |---|---|---|
-| USART to CH340 (TX/RX) | PA9/PA10 (G) | |
+| USART to CH340 (TX/RX) | PA9/PA10 | G (250000 baud confirmed) |
 | USART to ESP32 header | | |
 | Buzzer | | |
 | LED | | |
@@ -51,6 +51,6 @@ Source key: **M** = measured with a meter/scope, **D** = derived from Marlin out
 
 ## How to fill this in
 
-1. Marlin: `M122` gives driver status and whether TMC UART is working. Some vendor builds keep `PINS_DEBUGGING`; try `M43` to dump pin states and `M43 E1` to watch for changes while toggling endstops and the probe.
+1. Marlin: `M122` done (see probe log). `M43` is not compiled in, so pin numbers have to come from the hardware or from the firmware dump.
 2. If `M43` is compiled out, disassemble the stock dump around the GPIO init calls, or just meter it: every driver has STEP/DIR/EN pads next to it; beep from each to the MCU.
 3. For `Level` and `Zero`, follow the ribbon pins on the driver board to the MCU. Both should be plain GPIO, probably with a series resistor.

@@ -20,8 +20,8 @@ Three PCBs plus a rear I/O breakout:
 | Ref | Part | Notes |
 |---|---|---|
 | U1 | **Geehy APM32E103VET6** (marking `APM32 E103VET6 SPR4Y 3201 A1 2207`) | STM32F103VE clone. Cortex-M3, 72 MHz, 512 KB flash, 128 KB SRAM, LQFP100. |
-| U7, U8 | **`4988ET`** (marking `4988ET A2032 030L`) | A4988-compatible step/dir driver, no UART. Likely the Z and E axes. |
-| U9, U6 | **TMC2209-LA** (Trinamic, `2433 A243S GERMANY`) | Genuine Trinamic. Likely X and Y. Whether the UART pins are routed to the MCU is unknown. |
+| U7, U8 | **`4988ET`** (marking `4988ET A2032 030L`) | A4988-compatible step/dir driver, no UART. Z and E (confirmed by `M122`/`M906` only listing X and Y). |
+| U9, U6 | **TMC2209-LA** (Trinamic, `2433 A243S GERMANY`) | Genuine Trinamic. X (UART addr 0) and Y (addr 3). UART is routed; Y responds, X does not (see probe log). |
 | Y1 | crystal | 8 MHz assumed (standard for F103); check with `M115`/Klipper clock. |
 | - | `470 35V` electrolytic + inductor | 24 V to 5 V buck. |
 | - | `CK 100 35V` x4 | Driver bulk caps. |
@@ -52,7 +52,7 @@ Headers and connectors on this side:
 |---|---|---|
 | - | 2.4" TFT, ~18-pin FPC | SPI TFT, controller unknown (ST7789 or ILI9341 class). Not supported by Klipper. |
 | Encoder1 | Rotary encoder with push | Menu knob |
-| U12 | SOP-16 next to `USB D+ D- 5.0V` pads | USB-to-UART bridge, almost certainly CH340G. Means the host sees a CH340 serial port, not a native STM32 CDC device. |
+| U12 | SOP-16 next to `USB D+ D- 5.0V` pads | CH340 USB-to-UART (enumerates as `1a86:7523`). The host sees a serial port, not a native STM32 CDC device. Marlin runs it at 250000 baud. |
 | `ESP32 UART` header | `3.3V TXD0 RXD0 GND` | Socket for the M1S WiFi/BT module. It is a UART peripheral, not a host. |
 | `ESP-BOOT` | 2-pin | ESP32 boot strap, for reflashing the module. |
 | U11 | SOIC-8 near the encoder | Unknown, possibly EEPROM or level shifter. |
@@ -121,8 +121,8 @@ USB-B, 5.5 mm barrel jack, rocker switch, one JST back to the mainboard. Nothing
 - [ ] Confirm mainboard revision string and that it matches `V0.4`
 - [ ] Read the printhead MCU marking
 - [ ] Read U12 marking (CH340G?) and U11
-- [ ] Which driver drives which axis
-- [ ] Whether TMC2209 `PDN_UART` pins are routed (look for a trace/resistor from pin 5 of each TMC to the MCU)
+- [x] Which driver drives which axis: TMC2209 = X, Y; 4988 = Z, E
+- [x] TMC UART routed (Y works). Why X does not answer: check the `PDN_UART` resistor on the X driver
 - [ ] Identify J3/J5/J16 on the mainboard
 - [ ] Crystal frequency
 - [ ] What is on the ESP32 module (chip, antenna, any markings)

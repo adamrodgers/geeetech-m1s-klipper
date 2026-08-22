@@ -27,7 +27,7 @@ The M1S is the M1 with a WiFi/Bluetooth module added. Mechanically and electrica
 
 ## Stock software
 
-- Firmware is unnamed in Geeetech's docs but the menus ("Prepare", "Print from Media", "Probing Failed", "GEEETECH M1S Ready") are Marlin 2.x strings. Input shaping and pressure advance are Marlin 2.1 features. Treat it as Marlin 2.1.x with a vendor config until the serial probe confirms.
+- Firmware is **Marlin**, vendor build `M1S_V1.96_MCU103` dated 2025-11-19 (`M115`). Marlin 2.1.x by feature set: input shaping (`M593`), linear advance, 4x4 mesh, power-loss recovery. Serial is 250000 baud over the CH340. Details in [probe-log.md](probe-log.md).
 - Mobile app: "Geeetech" (Android package `com.jietai.print`). Pairing is done over Bluetooth from the phone, after which the printer joins WiFi and talks to Geeetech's cloud. There is no documented LAN API.
 - Firmware updates: Geeetech says "check the website for the latest firmware" but publishes nothing for the M1/M1S. Their other 32-bit boards update from a `.bin` on SD, and the mainboard has an `SD-Board` connector, so an SD bootloader is likely. Unconfirmed.
 

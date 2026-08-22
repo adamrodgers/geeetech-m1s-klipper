@@ -1,0 +1,51 @@
+# port=/dev/cu.wchusbserial10 baud=250000
+# --- boot banner ---
+
+
+> M110
+ok
+
+
+> M355
+echo:Case light: ok
+
+
+> M355
+echo:Case light: ok
+
+
+> S1
+echo:Unknown command: "S1"
+ok
+
+
+> M355
+echo:Case light: ok
+
+
+> S0
+echo:Unknown command: "S0"
+ok
+
+
+> M300 S1000 P100
+ok
+
+
+> M106 S128
+ok
+
+
+> M107
+ok
+
+
+> M119
+Reporting endstop status
+x_max: open
+y_min: open
+z_min: open
+z_probe: open
+filament: TRIGGERED
+ok
+

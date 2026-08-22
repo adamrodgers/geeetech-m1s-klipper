@@ -4,9 +4,9 @@
 
 Inferred, not yet confirmed:
 
-- Marlin 2.1.x, Geeetech vendor build, on the APM32E103VET6.
+- Confirmed: Marlin, vendor build `M1S_V1.96_MCU103` (2025-11-19), 250000 baud. Marlin 2.1.x by feature set.
 - Possibly behind a Geeetech SD-card bootloader. Their GTM32 line (STM32F103 based) updates from a `.bin` on SD, and this board has an SD daughterboard. If a bootloader exists, the application starts at an offset (commonly 0x8000 = 32 KiB on Geeetech boards; BTT uses 0x7000 or 0x2000). Klipper must be built with the same offset or the bootloader must be bypassed.
-- The serial console is Marlin G-code over the CH340 at a baud of 115200 or 250000.
+- The serial console is Marlin G-code over the CH340 at 250000 baud. EEPROM is enabled; whether it is flash-emulated or the SOIC-8 on the display board is not known.
 
 ## Ways to get firmware on and off the chip
 
@@ -61,7 +61,7 @@ make menuconfig
   Bootloader offset:              (match the dump; 'No bootloader' if flashing via SWD/ROM)
   Clock Reference:                8 MHz crystal
   Communication interface:        Serial (on USART1 PA10/PA9)
-  Baud rate:                      250000
+  Baud rate:                      250000   (matches stock, and the CH340 handles it)
 ```
 
 Klipper's STM32F103 build is known to run on APM32F103 clones. The E103 variant has more flash and RAM than the F103C8 Klipper assumes, which is harmless. If the crystal turns out to be something other than 8 MHz, set it here or the serial baud will be wrong.

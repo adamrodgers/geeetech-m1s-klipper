@@ -1,0 +1,219 @@
+# port=/dev/cu.wchusbserial10 baud=250000
+# --- boot banner ---
+
+
+> M115
+echo:Unknown command: ""
+ok
+
+
+> M503
+echo:; Linear Units:
+echo:  G21 ; (mm)
+echo:; Temperature Units:
+echo:  M149 C ; Units in Celsius
+echo:; Filament settings (Disabled):
+echo:  M200 S0 D1.75
+echo:; Steps per unit:
+echo:  M92 X80.00 Y80.00 Z830.00 E570.00
+echo:; Max feedrates (units/s):
+echo:  M203 X200.00 Y200.00 Z25.00 E60.00
+echo:; Max Acceleration (units/s2):
+echo:  M201 X3000.00 Y3000.00 Z500.00 E5000.00
+echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+echo:  M204 P2000.00 R3000.00 T3000.00
+echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> X<max_jerk> Y<max_jerk> Z<max_jerk> E<max_jerk>):
+echo:  M205 B20000.00 S0.00 T0.00 X10.00 Y10.00 Z0.30 E10.00
+echo:; Home offset:
+echo:  M206 X0.00 Y0.00 Z0.00
+echo:  auto_manu_level_sel: true
+echo:; Mesh Bed Leveling:
+echo:  M420 S1 Z10.00 ; Leveling ON
+echo:  G29 W I0 J0 Z0.36410
+echo:  G29 W I1 J0 Z0.30964
+echo:  G29 W I2 J0 Z0.31084
+echo:  G29 W I3 J0 Z0.27229
+echo:  G29 W I0 J1 Z0.28819
+echo:  G29 W I1 J1 Z0.26747
+echo:  G29 W I2 J1 Z0.21205
+echo:  G29 W I3 J1 Z0.21325
+echo:  G29 W I0 J2 Z0.27711
+echo:  G29 W I1 J2 Z0.25253
+echo:  G29 W I2 J2 Z0.22771
+echo:  G29 W I3 J2 Z0.21542
+echo:  G29 W I0 J3 Z0.33831
+echo:  G29 W I1 J3 Z0.30337
+echo:  G29 W I2 J3 Z0.32867
+echo:  G29 W I3 J3 Z0.36120
+echo:; Material heatup parameters:
+echo:  M145 S0 H190.00 B50.00 F0
+echo:  M145 S1 H200.00 B50.00 F0
+echo:; Hotend PID:
+echo:  M301 P18.80 I1.39 D64.34
+echo:; Power-loss recovery:
+echo:  M413 S1 ; ON
+echo:; Retract (S<length> F<feedrate> Z<lift>):
+echo:  M207 S3.00 W13.00 F2700.00 Z0.00
+echo:; Recover (S<length> F<feedrate>):
+echo:  M208 S0.00 W0.00 F480.00
+echo:; Auto-Retract (S<enable>):
+echo:  M209 S0
+echo:; Z-Probe Offset:
+echo:  M851 X0 Y0 Z0.02 ; (mm)
+echo:; Stepper driver current:
+echo:  M906 X800 Y800
+
+echo:; Driver stepping mode:
+echo:  M569 S1 X Y
+echo:; Input Shaping:
+echo:  M593 X F30.00 D0.20
+echo:  M593 Y F30.00 D0.20
+echo:; Linear Advance:
+echo:  M900 K0.10
+echo:; Filament load/unload:
+echo:  M603 L0.00 U5.00 ; (mm)
+echo:; Filament runout sensor:
+echo:  M412 S0 D310.00 ; Sensor OFF
+echo:; UI Language:
+echo:  M414 S0
+ok
+
+
+> M122
+		X	Y
+Address		0	3
+Enabled		false	false
+Set current	800	800
+RMS current	1436	795
+MAX current	2025	1121
+Run current	25/31	25/31
+Hold current	12/31	12/31
+CS actual	0/31	12/31
+PWM scale		
+vsense		0=.325	1=.18
+stealthChop	false	true
+msteps		256	16
+interp		false	true
+tstep		0	max
+PWM thresh.		
+[mm/s]			
+OT prewarn	false	false
+triggered
+ OTP		false	false
+pwm scale sum	0	14
+pwm scale auto	0	0
+pwm offset auto	0	36
+pwm grad auto	0	14
+off time	0	3
+blank time	16	24
+hysteresis
+ -end		-3	-1
+ -start		1	1
+Stallguard thrs	0	0
+uStep count	0	8
+DRVSTATUS	X	Y
+sg_result	0	0
+stst		*	
+olb			
+ola			
+s2gb			
+s2ga			
+otpw			
+ot			
+157C			
+150C			
+143C			
+120C			
+s2vsa			
+s2vsb			
+Driver registers:
+		X	0x00:00:00:00	 Bad response!
+		Y	0xC0:0C:00:00
+
+
+Testing X connection... Error: All LOW
+Testing Y connection... OK
+ok
+
+
+> M119
+Reporting endstop status
+x_max: open
+y_min: open
+z_min: open
+z_probe: open
+filament: TRIGGERED
+o
+
+> M569
+X driver mode:	stealthChop
+Y driver mode:	stealthChop
+ok
+
+
+> M593
+  M593 X F30.00 D0.20
+  M593 Y F30.00 D0.20
+ok
+
+
+> M900
+echo:Advance K=0.10
+ok
+
+
+> M301
+  M301 P18.80 I1.39 D64.34
+ok
+
+
+> M304
+echo:Unknown command: "M304"
+ok
+
+
+> M105
+ok T:23.73 /0.00 B:24.33 /0.00 @:0 B@:0
+
+
+> M43
+echo:Unknown command: "M43"
+ok
+
+
+> M20
+Begin file list
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~1.GZ 3758080
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~2.GZ 3573760
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~1.8(3/RELEASE/LIBUSB/LIBUSB/OS/HAIKU/CONFIG~1.GUE 42938
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~1.8(6/RELEASE/LIBUSB/LIBUSB/OS/HAIKU/CONFIG~1.GUE 42938
+3DBENC~1.GCO 3425728
+ANGEL_~1.GCO 11515558
+ART_PL~1.GCO 11696345
+ASTRON~1.GCO 7266194
+CAT_PL~1.GCO 14030526
+CROWN_~1.GCO 8771995
+DOG_PL~1.GCO 13306251
+GEEETE~1.GCO 2031550
+HORSE_~1.GCO 3791089
+LUCKY_~1.GCO 12442571
+MINI_D~1.GCO 6869725
+SMALL_~1.GCO 14651019
+XMAS_T~1.GCO 3931781
+DECOMP~1.GCO 8180396
+BOOMER~1.GCO 627131
+FLEXIS~1.GCO 16439120
+EASTER~2.GCO 25103837
+EASTER~1.GCO 25100051
+EASTER~3.GCO 26453262
+OCTOPU~1.GCO 14995515
+AIRDUS~1.GCO 4695198
+BANNER~1.GCO 7131956
+GEMSTO~1.GCO 19505653
+DRAGON~1.GCO 19522580
+CE2_EA~1.GCO 6645280
+OBJ_2_~1.GCO 16917135
+OBJ_2_~2.GCO 13992023
+End file list
+ok
+

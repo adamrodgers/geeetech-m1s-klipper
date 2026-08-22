@@ -33,6 +33,7 @@ The M1S is the M1 with a WiFi/Bluetooth module added. Mechanically and electrica
 
 ## Mechanical notes from photos
 
+- Homing: X to max (X=115), Y to min, Z to min with a lift to 25 mm afterwards. Usable travel per `M211`: 115 x 114 x 95.
 - Y axis: belt driven from a NEMA17 in the base, linear rail in the base.
 - Z axis: NEMA17 in the base with a leadscrew. Z endstop is a small PCB microswitch in the base.
 - X axis and extruder: driven from the mainboard through a 16-way ribbon to the printhead board.

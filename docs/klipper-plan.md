@@ -26,7 +26,7 @@ Build per [firmware.md](firmware.md). Flash via SWD (simplest, no bootloader que
 
 Start minimal: steppers, endstops, heaters, thermistors, fans. Home X/Y only. Then:
 
-- `[probe]` on the `Level` pin, `[output_pin zero_tare]` on the `Zero` pin, and a `PROBE_PREP` macro that heats, wipes the nozzle on the silicone pad, and pulses `Zero`. Probe with the nozzle, like the stock firmware does.
+- `[probe]` on the `Level` pin, `[output_pin zero_tare]` on the `Zero` pin, and a `PROBE_PREP` macro that heats (nozzle 140 C, bed 50 C, same as stock), wipes the nozzle on the silicone pad, and pulses `Zero`. Probe with the nozzle, like the stock firmware does. Mesh 4x4 over X 10..95, Y 10..100 matches stock.
 - Measure `Level` polarity and timing first. If the head MCU only asserts `Level` for a short pulse, a `[gcode_button]` or a latch won't be enough and the probe may need `deactivate_on_each_sample` games. Unknown until scoped.
 - TMC2209 UART if routed. If not, run them like the A4988s on hardware Vref.
 - Bed mesh 4x4 to match the stock 16 points.

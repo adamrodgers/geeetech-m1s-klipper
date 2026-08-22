@@ -1,0 +1,15 @@
+  0.1s  x_max: open y_min: open z_min: open z_probe: open filament: TRIGGERED
+done
+> M110
+ok
+> M401
+
+  0.3s  
+  1.0s  X:115.00 Y:0.00 Z:10.00 E:0.00 Count X:9200 Y:0 Z:8317 x_max: open y_min: open z_min: open z_probe: open filament: TRIGGERED x_max: open y_min: open z_min: open z_probe: open filament: TRIGGERED x_max: open y_min: open z_min: open z_probe: open filament: TRIGGERED x_max: open y_min: open z_min: open z_probe: open filament: TRIGGERED
+  1.1s  x_max: open y_min: open z_min: open z_probe: open filament: TRIGGERED
+  3.1s  x_max: open y_min: open z_min: open z_probe: TRIGGERED filament: TRIGGERED
+  3.5s  x_max: open y_min: open z_min: open z_probe: open filament: TRIGGERED
+> M402
+X:115.00 Y:0.00 Z:10.00 E:0.00 Count X:9200 Y:0 Z:8317
+ok
+done

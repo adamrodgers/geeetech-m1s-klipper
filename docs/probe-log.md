@@ -118,3 +118,25 @@ The bundled card has Geeetech's sample G-code plus a leftover copy of a slicer i
 Working interpretation: the head MCU does not report contact until it has been armed, and Marlin's deploy step arms it (very likely a `Zero` tare pulse). Once armed a press shows on `Level`. Still unknown: whether `Level` is held for the duration of contact or is a short pulse, and whether the arm is one-shot. Needs a scope or logic analyser on ribbon pins 1 and 2 during a real `G29`, or a faster poll than `M119` can manage.
 
 If `Zero` turns out to be a simple tare pulse, the Klipper side is `[output_pin]` + `[probe]` with an `activate_gcode` that pulses it. If it is one-shot per probe, `deactivate_on_each_sample` and re-arming in `activate_gcode` covers it.
+
+**G28 + G29 run** - [`logs/2026-08-22-g28-g29-capture.txt`](../logs/2026-08-22-g28-g29-capture.txt)
+
+`G28` takes about 40 s and finishes at X115 Y0 Z24.98: X homes to max, Y to min, Z lifts to 25 after homing. `x_max` and `y_min` read TRIGGERED at rest afterwards, `z_min` open (so Z does not park on its switch).
+
+`G29` on this build is a vendor routine, not plain Marlin ABL. Sequence as seen on serial (times from the log):
+
+1. Heats nozzle to **140 C** and bed to **50 C**, reporting temps every second (`M155` style autoreport). Waits for both.
+2. Probes a single reference point at X95 Y10 and reports Z -0.28, then ~40 s of activity with no serial output (nozzle wipe on the silicone pad and/or a Z re-home; watch it next time).
+3. Prints a half-filled "Bilinear Leveling Grid" and "Nozzle too Cold - Heating" - looks like the first pass is aborted if the nozzle drifted below target during the wipe, then it reheats.
+4. Re-homes (back to X115 Y0 Z24.98), prints `G29 Auto Bed Leveling`, then probes **16 points, ~7.4 s each**, in a serpentine from X95 Y10 to X95 Y100 (X at 10/38.33/66.67/95, Y at 10/40/70/100).
+5. Prints the grid and saves it. Heaters are turned off and it re-homes.
+
+Mesh from this run (mm): 0.21 to 0.37, range 0.16. Consistent with the values already in EEPROM from the previous owner.
+
+Timing per point (7.4 s) suggests a slow single-speed probe with a lift between points, not a fast two-stage probe. Under Klipper with `[probe]` and `speed: 5` / `lift_speed: 20` this should be quicker.
+
+Probe temperature policy: nozzle at 140 C, bed at 50 C. 140 C is high enough to soften any PLA blob on the nozzle tip without oozing much. Keep the same numbers in the Klipper probing macro.
+
+During the whole run `M119` never showed `z_probe: TRIGGERED` at the polling points (before/after), consistent with `Level` being a short pulse on contact rather than a held level. A logic analyser on ribbon pins 1-2 is still the way to settle this.
+
+Post-run state: responsive, heaters off, at home position, leveling ON with 10 mm fade.

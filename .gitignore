@@ -1,0 +1,4 @@
+.DS_Store
+*.swp
+# raw flash dumps are kept locally and copied off-machine, not committed
+logs/*.bin

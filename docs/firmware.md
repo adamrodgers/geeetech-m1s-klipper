@@ -12,7 +12,7 @@ Inferred, not yet confirmed:
 
 ### 1. SWD (preferred for the first dump)
 
-Header `MCU-J-LINK` on the mainboard: `3.3V DIO / GND CLK / GND RST`. Any ST-Link V2 clone, a Pi Pico running picoprobe, or a Raspberry Pi's GPIO with OpenOCD works.
+On the M1S board the header is `J6` (`TDO TCK TDI TMS`): SWDIO = `TMS`, SWCLK = `TCK`, GND from `J3`. (The M1 board has a separate `MCU-J-LINK` header.) Any ST-Link V2 clone, a Pi Pico running picoprobe, or a Raspberry Pi's GPIO with OpenOCD works.
 
 Dump everything before writing anything:
 
@@ -59,7 +59,7 @@ make menuconfig
   Micro-controller Architecture:  STMicroelectronics STM32
   Processor model:                STM32F103
   Bootloader offset:              (match the dump; 'No bootloader' if flashing via SWD/ROM)
-  Clock Reference:                8 MHz crystal
+  Clock Reference:                8 MHz crystal   (Y1 marked D8.000C, confirmed)
   Communication interface:        Serial (on USART1 PA10/PA9)
   Baud rate:                      250000   (matches stock, and the CH340 handles it)
 ```

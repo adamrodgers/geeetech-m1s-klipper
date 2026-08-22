@@ -16,12 +16,12 @@ Notes, teardown data, and configs for converting a stock Geeetech M1S mini print
 
 ## Summary of findings so far
 
-- Main MCU is a **Geehy APM32E103VET6**, an STM32F103VE clone. Klipper's STM32F103 target should run on it.
+- Mainboard is `GT_FM_M1S_V0.2` (single board, in the top of the frame), not the M1's two-board stack. Main MCU is a **Geehy APM32E103VET6**, an STM32F103VE clone, 8 MHz crystal. Klipper's STM32F103 target should run on it.
 - Stock firmware is Marlin `M1S_V1.96_MCU103`, 250000 baud over a CH340.
 - Drivers are soldered: **2x TMC2209** (X, Y; UART wired, Y responds) and **2x A4988-class** (Z, E).
-- The board has a **BOOT0 jumper** and an **SWD header**, so it can be flashed over the USB serial bootloader or with an ST-Link. No board swap needed.
+- JTAG/SWD header `J6` is populated, so the flash can be dumped and Klipper flashed with an ST-Link. No board swap needed.
 - The printhead has its own small MCU plus a **CS1237 load-cell ADC**. It outputs the probe as a plain digital `Level` line and takes a `Zero` (tare) input. Klipper can treat it as an ordinary `[probe]`.
-- USB to the host goes through a CH340-class USB-UART on the display board. The M1S WiFi/Bluetooth ESP32 module hangs off a UART header on the same board and is only useful with the vendor app.
+- USB to the host goes through a CH340C. An ESP32-WROOM-32E is soldered on for WiFi/Bluetooth and only talks to the vendor app; two 74*257 muxes near it probably switch the MCU UART between USB and the ESP32.
 - The 2.4" TFT and encoder are not usable under Klipper; Mainsail/Fluidd replaces them.
 
 ## Layout
@@ -36,6 +36,7 @@ docs/
   probe-log.md     commands to run on the stock firmware and results
   references.md    links
 photos/
+  m1s/             this unit's mainboard
   stock-m1/        board and internals photos (from 0dysseusRex, CC0)
   crops/           zoomed chip markings
 scripts/           serial query helper

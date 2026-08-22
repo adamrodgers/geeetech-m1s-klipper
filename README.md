@@ -43,4 +43,4 @@ logs/              raw serial dumps from the stock firmware
 
 ## Credits
 
-Internal photos are from the [0dysseusRex/Geeetech-M1-Upgrade](https://github.com/0dysseusRex/Geeetech-M1-Upgrade) repo (CC0), which documents a full electronics swap on the M1. This project takes the other route and keeps the stock boards. Research and write-up were done with help from Claude.
+Internal photos are from the [0dysseusRex/Geeetech-M1-Upgrade](https://github.com/0dysseusRex/Geeetech-M1-Upgrade) repo (CC0), which documents a full electronics swap on the M1. This project takes the other route and keeps the stock boards.

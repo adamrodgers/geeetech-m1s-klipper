@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#6ec6e5"/>
+  <rect x="14" y="40" width="36" height="8" rx="2" fill="#0f181d"/>
+  <path d="M22 34 V16 l10 11 10-11 v18" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="74" y="34" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff">M1S</text>
+  <text x="74" y="52" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#6ec6e5" letter-spacing="3">GEEETECH</text>
+</svg>

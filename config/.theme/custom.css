@@ -1,0 +1,65 @@
+/* Geeetech M1S theme for Mainsail - dark base, M1S case light-blue + white accents */
+
+:root {
+  --m1s-blue:        #6ec6e5;  /* case light blue */
+  --m1s-blue-bright: #8fd8f2;
+  --m1s-blue-deep:   #3d9dc4;
+  --m1s-bg:          #0f181d;  /* near-black with blue cast */
+  --m1s-surface:     #16242c;  /* panels */
+  --m1s-surface-2:   #1c2e38;  /* toolbars, hovers */
+  --v-primary-base:  #6ec6e5;
+  --v-primary-darken1: #3d9dc4;
+  --v-anchor-base:   #6ec6e5;
+}
+
+/* app chrome */
+.v-application.theme--dark {
+  background: var(--m1s-bg) !important;
+}
+.theme--dark.v-app-bar.v-toolbar.v-sheet,
+.theme--dark.v-navigation-drawer {
+  background-color: var(--m1s-surface-2) !important;
+}
+.theme--dark.v-card,
+.theme--dark.v-sheet:not(.v-app-bar):not(.v-navigation-drawer) {
+  background-color: var(--m1s-surface) !important;
+}
+.theme--dark.v-card > .v-card__title,
+.v-card .v-toolbar.v-sheet {
+  background-color: var(--m1s-surface-2) !important;
+}
+
+/* primary accents: buttons, sliders, switches, tabs, links */
+.v-application .primary {
+  background-color: var(--m1s-blue) !important;
+  border-color: var(--m1s-blue) !important;
+  color: #0f181d !important;             /* dark text on light-blue buttons */
+}
+.v-application .primary--text {
+  color: var(--m1s-blue) !important;
+  caret-color: var(--m1s-blue) !important;
+}
+.v-btn.primary:hover { background-color: var(--m1s-blue-bright) !important; }
+a { color: var(--m1s-blue); }
+
+.theme--dark.v-tabs > .v-tabs-bar .v-tab--active { color: var(--m1s-blue) !important; }
+.theme--dark.v-tabs .v-tabs-slider { background-color: var(--m1s-blue) !important; }
+
+.v-slider__thumb, .v-slider__track-fill { background-color: var(--m1s-blue) !important; }
+.v-input--switch__thumb.primary--text { color: var(--m1s-blue) !important; }
+.v-input--switch .v-input--switch__track.primary--text { color: var(--m1s-blue-deep) !important; }
+
+.v-progress-linear__determinate.primary,
+.v-progress-circular.primary--text { color: var(--m1s-blue) !important; }
+
+/* temperature chart + console keep default colors; scrollbars go subtle blue */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--m1s-bg); }
+::-webkit-scrollbar-thumb { background: var(--m1s-blue-deep); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--m1s-blue); }
+
+/* sidebar selected item */
+.theme--dark.v-list-item--active,
+.v-navigation-drawer .v-list-item--active {
+  color: var(--m1s-blue) !important;
+}

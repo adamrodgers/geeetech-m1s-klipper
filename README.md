@@ -10,6 +10,7 @@ Notes, teardown data, and configs for converting a stock Geeetech M1S mini print
 | Serial probe of stock Marlin (`M115`/`M503`/`M122`) | done, see [docs/probe-log.md](docs/probe-log.md) |
 | Stock firmware backup | not started |
 | Pin map | partial, see [docs/pinmap.md](docs/pinmap.md) |
+| Klipper host (Pi 4, Mainsail at http://m1s.local) | done, see [docs/host.md](docs/host.md) |
 | Klipper MCU build and flash | not started |
 | `printer.cfg` | not started |
 | Load-cell probe under Klipper | not started |

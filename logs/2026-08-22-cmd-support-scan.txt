@@ -1,0 +1,191 @@
+# port=/dev/cu.wchusbserial10 baud=250000
+# --- boot banner ---
+
+
+> M110
+ok
+
+
+> M587
+echo:Unknown command: "M587"
+ok
+
+
+> M588
+echo:Unknown command: "M588"
+ok
+
+
+> M552
+echo:Unknown command: "M552"
+ok
+
+
+> M553
+echo:Unknown command: "M553"
+ok
+
+
+> M118
+
+ok
+
+
+> M118 E1 test
+echo:test
+ok
+
+
+> M501
+echo:leveling is enabled
+echo:V88 stored settings retrieved (773 bytes; crc 17254)
+echo:; Linear Units:
+echo:  G21 ; (mm)
+echo:; Temperature Units:
+echo:  M149 C ; Units in Celsius
+echo:; Filament settings (Disabled):
+echo:  M200 S0 D1.75
+echo:; Steps per unit:
+echo:  M92 X80.00 Y80.00 Z830.00 E570.00
+echo:; Max feedrates (units/s):
+echo:  M203 X200.00 Y200.00 Z25.00 E60.00
+echo:; Max Acceleration (units/s2):
+echo:  M201 X3000.00 Y3000.00 Z500.00 E5000.00
+echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+echo:  M204 P2000.00 R3000.00 T3000.00
+echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> X<max_jerk> Y<max_jerk> Z<max_jerk> E<max_jerk>):
+echo:  M205 B20000.00 S0.00 T0.00 X10.00 Y10.00 Z0.30 E10.00
+echo:; Home offset:
+echo:  M206 X0.00 Y0.00 Z0.00
+echo:  auto_manu_level_sel: true
+echo:; Mesh Bed Leveling:
+echo:  M420 S1 Z10.00 ; Leveling ON
+echo:  G29 W I0 J0 Z0.36627
+echo:  G29 W I1 J0 Z0.32120
+echo:  G29 W I2 J0 Z0.28988
+echo:  G29 W I3 J0 Z0.28193
+echo:  G29 W I0 J1 Z0.31229
+echo:  G29 W I1 J1 Z0.25036
+echo:  G29 W I2 J1 Z0.21855
+echo:  G29 W I3 J1 Z0.20964
+echo:  G29 W I0 J2 Z0.29614
+echo:  G29 W I1 J2 Z0.25880
+echo:  G29 W I2 J2 Z0.23253
+echo:  G29 W I3 J2 Z0.20819
+echo:  G29 W I0 J3 Z0.35639
+echo:  G29 W I1 J3 Z0.32289
+echo:  G29 W I2 J3 Z0.33229
+echo:  G29 W I3 J3 Z0.34578
+echo:; Material heatup parameters:
+echo:  M145 S0 H190.00 B50.00 F0
+echo:  M145 S1 H200.00 B50.00 F0
+echo:; Hotend PID:
+echo:  M301 P18.80 I1.39 D64.34
+echo:; Power-loss recovery:
+echo:  M413 S1 ; ON
+echo:; Retract (S<length> F<feedrate> Z<lift>):
+echo:  M207 S3.00 W13.00 F2700.00 Z0.00
+echo:; Recover (S<length> F<feedrate>):
+echo:  M208 S0.00 W0.00 F480.00
+echo:; Auto-Retract (S<enable>):
+echo:  M209 S0
+echo:; Z-Probe Offset:
+echo:  M851 X0 Y0 Z0.02 ; (mm)
+echo:; Stepper driver current:
+echo:  M906 X800 Y800
+
+echo:; Driver stepping mode:
+echo:  M569 S1 X Y
+echo:; Input Shaping:
+echo:  M593 X F30.00 D0.20
+echo:  M593 Y F30.00 D0.20
+echo:; Linear Advance:
+echo:  M900 K0.10
+echo:; Filament load/unload:
+echo:  M603 L0.00 U5.00 ; (mm)
+echo:; Filament runout sensor:
+echo:  M412 S0 D310.00 ; Sensor OFF
+echo:; UI Language:
+echo:  M414 S0
+ok
+
+
+> M504
+echo:EEPROM OK
+ok
+
+
+> M913
+echo:Unknown command: "M913"
+ok
+
+
+> M914
+echo:Unknown command: "M914"
+ok
+
+
+> M48
+M48 Z-Probe Repeatability Test
+? (X,Y) out of bounds.
+ok
+
+
+> M31
+echo:Print time: 0s
+ok
+
+
+> M20 L
+Begin file list
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~1.GZ 3758080 2. Slicing Software and Drivers/2. USB Drivers//Linux/USBdriversforlinuxFT232/libftd2xx-1.4.8(32bit).gz
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~2.GZ 3573760 2. Slicing Software and Drivers/2. USB Drivers//Linux/USBdriversforlinuxFT232/libftd2xx-i386-1.4.8(64bit).gz
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~1.8(3/RELEASE/LIBUSB/LIBUSB/OS/HAIKU/CONFIG~1.GUE 42938 2. Slicing Software and Drivers/2. USB Drivers//Linux/USBdriversforlinuxFT232/libftd2xx-1.4.8(32bit)//////config.guess
+2EB43~1.SLI/27D93~1.USB/FT232/LINUX/USBDRI~1/LIBFTD~1.8(6/RELEASE/LIBUSB/LIBUSB/OS/HAIKU/CONFIG~1.GUE 42938 2. Slicing Software and Drivers/2. USB Drivers//Linux/USBdriversforlinuxFT232/libftd2xx-i386-1.4.8(64bit)//////config.guess
+3DBENC~1.GCO 3425728 3DBency_PLA_Geeetech M1S_1h1m.gcode
+ANGEL_~1.GCO 11515558 Angel_duck_PLA_Geeetech M1S_2h38m.gcode
+ART_PL~1.GCO 11696345 Art_PLA_Geeetech M1S_2h45m.gcode
+ASTRON~1.GCO 7266194 Astronaut_PLA_Geeetech M1S_1h59m.gcode
+CAT_PL~1.GCO 14030526 Cat_PLA_Geeetech M1S_2h28m.gcode
+CROWN_~1.GCO 8771995 Crown_PLA_Geeetech M1S_2h18m.gcode
+DOG_PL~1.GCO 13306251 Dog_PLA_Geeetech M1S_2h35m.gcode
+GEEETE~1.GCO 2031550 Geeetech M1S_1kg Filament Spool Holder_PLA_1h24m.gcode
+HORSE_~1.GCO 3791089 Horse_PLA_Geeetech M1S_1h20m.gcode
+LUCKY_~1.GCO 12442571 Lucky_Cat_PLA_Geeetech M1S_2h38m.gcode
+MINI_D~1.GCO 6869725 Mini_dragon_PLA_Geeetech M1S_1h21m.gcode
+SMALL_~1.GCO 14651019 Small_Dog_PLA_Geeetech M1S_2h41m.gcode
+XMAS_T~1.GCO 3931781 Xmas_Tree_PLA_Geeetech M1S_1h54m.gcode
+DECOMP~1.GCO 8180396 DecompressRotate_PLA_M1S_1h21m.gcode
+BOOMER~1.GCO 627131 Boomerang_PLA_M1S_29m58s.gcode
+FLEXIS~1.GCO 16439120 FLEXI SABLE V2_0.2mm_PLA_Geeetech M1_2h43m.gcode
+EASTER~2.GCO 25103837 Easter Egg_0.2mm_PETG_Geeetech M1_5h23m.gcode
+EASTER~1.GCO 25100051 Easter Egg_0.2mm_PLA_Geeetech M1_5h23m.gcode
+EASTER~3.GCO 26453262 Easter Egg_0.2mm_PLA_Geeetech M1_5h56m.gcode
+OCTOPU~1.GCO 14995515 Octopus_spiral_sup_v6 (1)_0.2mm_PLA_Geeetech M1_2h54m.gcode
+AIRDUS~1.GCO 4695198 Air duster-multimaterial(1)_0.15mm_TPU_Geeetech M1_1h37m.gcode
+BANNER~1.GCO 7131956 BannerHanger (4)_0.2mm_TPU_Geeetech M1_1h15m.gcode
+GEMSTO~1.GCO 19505653 gemstone dragon_0.2mm_PETG_Geeetech M1_3h57m.gcode
+DRAGON~1.GCO 19522580 dragon 2.gcode
+CE2_EA~1.GCO 6645280 CE2_easter_egg_0.2mm_PETG_Geeetech M1_2h28m.gcode
+OBJ_2_~1.GCO 16917135 obj_2_q_0.2mm_PETG_Geeetech M1_4h17m.gcode
+OBJ_2_~2.GCO 13992023 obj_2_q_0.2mm_PLA_Geeetech M1_3h34m.gcode
+End file list
+ok
+
+
+> M360
+echo:Unknown command: "M360"
+ok
+
+
+> M600
+
+
+> M701
+
+
+> M702
+
+
+> M999
+

@@ -13,8 +13,8 @@ The M1S is the M1 with a WiFi/Bluetooth module added. Mechanically and electrica
 | Extruder | Direct drive, dual metal gears, 5:1 reduction, NEMA14 36x19.5 mm pancake motor |
 | X/Y/Z motors | NEMA17, 42x42x35 mm (HEMOTORS HEM-17D2006-15/-16 seen in photos) |
 | Bed | Heated, magnetic PEI flex plate |
-| Leveling | 16-point automatic, load cell in the hotend (nozzle touches bed) |
-| Nozzle wipe | Automatic, silicone wiper at the side of the bed, used before probing |
+| Leveling | 16-point automatic, load cell in the hotend (nozzle touches bed) plus a frame-fixed sprung Z reference button at nozzle X115 Y0 (click switch = `z_min`) that the nozzle presses to set absolute Z |
+| Nozzle wipe | Automatic silicone wiper strip mounted on the bed's rear edge - nozzle coords X 35-69, Y 110-114, pad top ~3 mm above bed plane |
 | Filament sensor | Yes, runout detection with "tension release" |
 | Part cooling | 50x50x15 blower |
 | Lighting | Built-in LED |

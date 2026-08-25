@@ -57,3 +57,7 @@ Anything that runs Klipper. A Pi Zero 2 W is enough and fits inside. Power it fr
 ## Screen
 
 Lost. There is no Klipper driver for a SPI TFT with this board's encoder. Options later: leave it blank, or wire a KlipperScreen-capable display to the host. Not worth effort on a 100 mm printer.
+
+## Internal USB harness (later mod)
+
+The rear USB-B jack lives on the passive rear I/O board and reaches the mainboard over a 4-wire JST (near the `D+ GND` / `J16 5V PWR` silkscreen). For a fully internal Pi: unplug that JST, cut the A-end off a USB cable and terminate it with a matching JST (red 5V, white D-, green D+, black GND - verify with a meter, and verify the board-side pinout by continuity to the rear B jack: pin 1 VBUS, 2 D-, 3 D+, 4 GND). Pi USB-A then plugs straight into the mainboard and the external B port goes dead. Do this only after the conversion is proven over a normal external cable. Power the Pi from its own 2.4 A+ supply, never from the printer's 5 V rail.

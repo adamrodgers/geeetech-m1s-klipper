@@ -12,6 +12,10 @@
 | Config dir | `~/printer_data/config/` - `printer.cfg` and `macros.cfg` deployed from this repo's `config/` |
 | Also installed | OpenOCD (for the SWD flash dump via GPIO), stm32flash, dfu-util, arm-none-eabi toolchain (for building Klipper MCU firmware) |
 
+## Config auto-backup
+
+A systemd timer on the Pi (`config-backup.timer`, every 30 min + 5 min after boot) runs `~/config-backup.sh`: rsyncs `~/printer_data/config/` into the repo's `config/` (excluding `README.md` and the KAMP symlink), commits as "Auto-backup: printer config from Pi ...", and pushes over a repo-scoped deploy key. Deliberately NOT the klipper-backup project and not visible in Update Manager - there is nothing to update. Check it with `systemctl status config-backup.timer` or by the auto-backup commits on GitHub. Pull before editing config locally; the Pi rebases before pushing.
+
 ## Setup notes / gotchas hit
 
 - Klipper's `install-debian.sh` fails on Bookworm (`python-dev` no longer exists). Manual equivalent: `virtualenv ~/klippy-env`, `pip install -r klipper/scripts/klippy-requirements.txt`, hand-written `klipper.service`.

@@ -28,3 +28,5 @@ The plan was to move the OS to the printer's factory 4 GB TF card. Aborted: with
 
 Pi GPIO (OpenOCD `raspberrypi-native`) to mainboard `J6`:
 GPIO25 -> TMS (SWDIO), GPIO11 -> TCK (SWCLK), GND -> GND (J3). Printer on its own PSU; no 3.3 V wire.
+- Chrome on the Mac showed `ERR_ADDRESS_UNREACHABLE` for all LAN IPs (Mainsail included) while curl/ping worked fine. Cause: stale Chrome connection state after a Tailscale connect/disconnect. Fix: fully quit Chrome and relaunch - it starts working a few seconds after restart. Tailscale itself can stay connected.
+- Mainsail theme: `config/.theme/` (custom.css + sidebar-logo.svg), M1S case blue on dark. Deployed to the Pi's config dir; edit CSS and hard-refresh to tweak.

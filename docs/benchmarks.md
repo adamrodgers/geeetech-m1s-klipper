@@ -43,9 +43,12 @@ Ellis TEST_SPEED, comparing mcu stepper positions before/after (skip = delta > 1
 | 750 | 25000 | 1 | 2 | pass |
 | 700 | 30000 | ok | ok | pass |
 | 700 | 32000 | ok | ok | pass |
+| 700 | 34000 | - | - | MARGINAL (3 iters ok, skipped on 4th) |
 | 700 | 35000 | - | - | SKIPPED |
 
-Ceiling is between accel 32000 (pass) and 35000 (fail); speed fine to 750+. Next test: SPEED=700 ACCEL=34000.
+**Reliable skip ceiling: ~32000 mm/s2 accel, speed 750+ mm/s.** 34k is borderline (fails under sustained load), 35k fails. Motors have massive torque headroom - NOT the bottleneck.
+
+**Print accel is quality-limited, not skip-limited.** Plastic frame -> ringing/ghosting well below the skip ceiling. Keep printing max_accel modest (~4000-5000 currently) until an ADXL345 input-shaper tune allows safely raising it. This test just confirms the drivetrain is not the constraint.
 
 ## Tuning plan / method
 

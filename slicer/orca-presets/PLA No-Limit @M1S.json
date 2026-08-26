@@ -1,0 +1,12 @@
+{
+    "type": "filament",
+    "name": "PLA No-Flow-Limit @M1S",
+    "from": "User",
+    "inherits": "Generic PLA @M1S",
+    "instantiation": "true",
+    "version": "2.4.0.2",
+    "compatible_printers": ["Geeetech M1S 0.4 nozzle"],
+    "filament_max_volumetric_speed": ["100"],
+    "nozzle_temperature": ["215"],
+    "nozzle_temperature_initial_layer": ["215"]
+}

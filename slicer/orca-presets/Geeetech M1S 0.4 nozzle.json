@@ -6,36 +6,99 @@
     "instantiation": "true",
     "version": "2.4.0.2",
     "printer_settings_id": "Geeetech M1S 0.4 nozzle",
-    "nozzle_diameter": ["0.4"],
-    "printable_area": ["0x0", "100x0", "100x110", "0x110"],
+    "nozzle_diameter": [
+        "0.4"
+    ],
+    "printable_area": [
+        "0x0",
+        "100x0",
+        "100x110",
+        "0x110"
+    ],
     "printable_height": "100",
     "print_host": "m1s.local",
     "host_type": "octoprint",
     "printer_agent": "moonraker",
-    "machine_max_speed_x": ["200", "200"],
-    "machine_max_speed_y": ["200", "200"],
-    "machine_max_speed_z": ["25", "25"],
-    "machine_max_speed_e": ["60", "60"],
-    "machine_max_acceleration_x": ["4000", "4000"],
-    "machine_max_acceleration_y": ["4000", "4000"],
-    "machine_max_acceleration_z": ["500", "500"],
-    "machine_max_acceleration_e": ["5000", "5000"],
-    "machine_max_acceleration_extruding": ["4000", "4000"],
-    "machine_max_acceleration_travel": ["4000", "4000"],
-    "machine_max_jerk_x": ["8", "8"],
-    "machine_max_jerk_y": ["8", "8"],
-    "machine_max_jerk_z": ["2", "2"],
-    "machine_max_jerk_e": ["2.5", "2.5"],
-    "max_layer_height": ["0.3"],
-    "min_layer_height": ["0.08"],
+    "machine_max_speed_x": [
+        "1200",
+        "1200"
+    ],
+    "machine_max_speed_y": [
+        "1200",
+        "1200"
+    ],
+    "machine_max_speed_z": [
+        "25",
+        "25"
+    ],
+    "machine_max_speed_e": [
+        "60",
+        "60"
+    ],
+    "machine_max_acceleration_x": [
+        "32000",
+        "32000"
+    ],
+    "machine_max_acceleration_y": [
+        "32000",
+        "32000"
+    ],
+    "machine_max_acceleration_z": [
+        "500",
+        "500"
+    ],
+    "machine_max_acceleration_e": [
+        "5000",
+        "5000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "32000",
+        "32000"
+    ],
+    "machine_max_acceleration_travel": [
+        "32000",
+        "32000"
+    ],
+    "machine_max_jerk_x": [
+        "8",
+        "8"
+    ],
+    "machine_max_jerk_y": [
+        "8",
+        "8"
+    ],
+    "machine_max_jerk_z": [
+        "2",
+        "2"
+    ],
+    "machine_max_jerk_e": [
+        "2.5",
+        "2.5"
+    ],
+    "max_layer_height": [
+        "0.3"
+    ],
+    "min_layer_height": [
+        "0.08"
+    ],
     "extruder_clearance_radius": "45",
     "extruder_clearance_height_to_rod": "36",
     "extruder_clearance_height_to_lid": "70",
-    "retraction_length": ["3"],
-    "retraction_speed": ["45"],
-    "deretraction_speed": ["30"],
-    "z_hop": ["0.2"],
-    "z_hop_types": ["Normal Lift"],
+    "retraction_length": [
+        "3"
+    ],
+    "retraction_speed": [
+        "45"
+    ],
+    "deretraction_speed": [
+        "30"
+    ],
+    "z_hop": [
+        "0.2"
+    ],
+    "z_hop_types": [
+        "Normal Lift"
+    ],
     "machine_start_gcode": "M104 S0\nM140 S0\nSET_PRINT_STATS_INFO TOTAL_LAYER=[total_layer_count]\nSTART_PRINT BED=[first_layer_bed_temperature] EXTRUDER=[first_layer_temperature]",
     "machine_end_gcode": "END_PRINT",
     "machine_pause_gcode": "PAUSE",

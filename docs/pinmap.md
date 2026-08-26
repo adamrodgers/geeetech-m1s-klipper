@@ -63,7 +63,10 @@ DIR + EN measured live (SWD ODR diff during small moves). STEP pins can't be cau
 
 Load-cell probe via the printhead MCU: `Level` (trigger, input to mainboard MCU) and `Zero` (tare, output). Narrowed from the Marlin GPIO register capture to unmapped pins:
 
-- **Level candidates (inputs):** PA8, PA12, PB2, PB13, PB14, PC3, PD12, PE3, PE5
-- **Zero candidates (outputs):** PA4, PB5, PC2, PC4, PC6, PD3, PD7, PD13, PE2, PE6
+**FOUND (2026-08-26, no SWD - via Klipper output_pin/gcode_button sweep):** Level = **PA8** (^PA8, LATCHES on contact), Zero/tare = **PB5** (pulse to reset+re-arm). Probe repeatability 0.005mm. 16-point mesh working, range ~0.13mm.
+
+Original candidate lists:
+- Level (inputs): PA8, PA12, PB2, PB13, PB14, PC3, PD12, PE3, PE5
+- Zero (outputs): PA4, PB5, PC2, PC4, PC6, PD3, PD7, PD13, PE2, PE6
 
 Plan: over SWD, pulse each Zero candidate (tare) and watch Level candidates for the head MCU's "ready pulse" (~2 s post-tare, no press needed - seen under Marlin after M401). Match = both pins. Then `[probe] pin:<Level>` + `[output_pin]` tare on `<Zero>` + re-enable `[bed_mesh]`.

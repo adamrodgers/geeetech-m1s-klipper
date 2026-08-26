@@ -26,6 +26,25 @@ Stock Marlin values (baseline): max_accel 3000, X/Y feed 200 mm/s, SCV 5, input 
 | stock | 200 | 3000 | 5 (jerk 10) | 30 Hz mzv | — | Marlin baseline |
 | Klipper start | 300 | 4000 | 8 | 30 Hz mzv | — | untuned starting point in printer.cfg |
 
+## TEST_SPEED results (skip/torque ceiling)
+
+Ellis TEST_SPEED, comparing mcu stepper positions before/after (skip = delta > 16 microsteps). These are the SKIP limit, NOT the print-quality limit - real print accel is far lower (ringing on a plastic frame). Shows the motors have huge torque headroom.
+
+| Speed (mm/s) | Accel (mm/s2) | X delta | Y delta | Result |
+|---|---|---|---|---|
+| 200 | 5000 | 0 | 0 | pass |
+| 200 | 7500 | 0 | 0 | pass |
+| 300 | 7500 | 1 | 1 | pass |
+| 500 | 10000 | 0 | 0 | pass |
+| 500 | 15000 | 0 | 0 | pass |
+| 500 | 20000 | 2 | 2 | pass |
+| 600 | 20000 | 0 | 0 | pass |
+| 600 | 25000 | 1 | 2 | pass |
+| 750 | 25000 | 1 | 2 | pass |
+| 700 | 35000 | - | - | SKIPPED (aborted, power-cycled) |
+
+Ceiling is between accel 25000 (pass) and 35000 (fail); speed fine to 750+. Next test: SPEED=700 ACCEL=30000.
+
 ## Tuning plan / method
 
 1. **Max flow** — extrude-only test at 200/210/220 °C: `G1 E<n> F<rate>` ramps; find where actual < commanded (or extruder skips). Sets a hard ceiling on print speed for a given layer.

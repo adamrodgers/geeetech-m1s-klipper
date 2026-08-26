@@ -1,0 +1,22 @@
+{
+    "type": "filament",
+    "name": "Generic PLA @M1S",
+    "from": "User",
+    "instantiation": "true",
+    "inherits": "fdm_filament_pla",
+    "filament_vendor": ["Generic"],
+    "nozzle_temperature": ["200"],
+    "nozzle_temperature_initial_layer": ["200"],
+    "hot_plate_temp": ["60"],
+    "hot_plate_temp_initial_layer": ["60"],
+    "filament_max_volumetric_speed": ["10"],
+    "filament_flow_ratio": ["0.98"],
+    "fan_min_speed": ["100"],
+    "fan_max_speed": ["100"],
+    "overhang_fan_threshold": ["25%"],
+    "slow_down_layer_time": ["8"],
+    "slow_down_min_speed": ["15"],
+    "filament_retraction_length": ["3"],
+    "pressure_advance": ["0.04"],
+    "enable_pressure_advance": ["1"]
+}

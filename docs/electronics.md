@@ -25,11 +25,12 @@ Headers and jumpers seen so far:
 
 | Label | Pins | Purpose |
 |---|---|---|
-| `J6` | `TDO TCK TDI TMS` (4 pins, plus a 5th pad at the top) | **JTAG/SWD.** For SWD use `TCK` = SWCLK, `TMS` = SWDIO. Take 3.3 V and GND from `J3`. |
+| `J6` | `TDO TCK TDI TMS` (unpopulated holes) | JTAG. Superseded by `H1` below for SWD use. |
+| `H1` | populated 2x3 right-angle header at the corner near the crystal | **SWD header, the flash-dump connection.** Top row silkscreen `V G G`; bottom row partly hidden but ends in `R` - expected layout matches the M1's MCU-J-LINK: `3.3V DIO / GND CLK / GND RST`. Confirm the hidden labels before wiring. |
 | `J3` | `3.3 TX0 RX0 GND` (right-angle pins, next to `ESP-BOOT`) | ESP32 UART0 (its console / flashing port). |
 | `J4` | `3.3 TX2 RX2 GND` (unpopulated) | ESP32 UART2, most likely the link to the MCU. |
 | `J5` | `ESP-BOOT` 2-pin | ESP32 GPIO0 strap for flashing. |
-| `H2` | 2-pin jumper, between the mux chips and the ESP32 | Unknown. Candidates: MCU BOOT0, or mux select. Do not bridge until traced. |
+| `H2` | 2 pins | NOT a jumper: board-to-board pins into the perpendicular daughterboard next to it. BOOT0-jumper theory retired; no accessible BOOT0 found so far. |
 | `J16` | `5V PWR` | 5 V / USB power jumper, same role as `USB_PWR` on the M1. |
 | `J17` | `D+ GND` pads | USB data pads. |
 | `Z-MIN`, `Y-M`, `X-M`, `Z-M` | JSTs | Z endstop and motors. |

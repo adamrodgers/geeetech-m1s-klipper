@@ -56,6 +56,10 @@ If the dump shows a Geeetech bootloader, it probably looks for a fixed filename 
 
 Done over SWD from the Pi (H1 header, GND was the gotcha - no shared ground gives OpenOCD "cannot read IDR"; confirm with `gpioget gpiochip0 24 25 23` reading `1 0 1`). Device id 0x0aa414, 512 KiB, read protection OFF, no write protection. Dump verified (two matching reads) and stored in `firmware/`. The USB ROM-bootloader route (MCU-BOOT jumper) was tried and does NOT work: the MCU boots to the ROM loader (screen stays dark) but its UART is muxed to the ESP32, not the CH340, so stm32flash times out at every baud. SWD is the only working path.
 
+## Klipper flashed (2026-08-25)
+
+Flashed klipper.bin (STM32F103 / 8MHz / USART1 / 250000, no bootloader) over SWD from the Pi. Gotcha: `flash write_image erase` timed out ("timeout waiting for algorithm") with the slow linuxgpiod bitbang. Fix: `reset halt` -> `stm32f1x mass_erase 0` -> `flash write_image` (no erase) -> `verify_image`. Wrote 39668 bytes, verified. Host serial confirmed as USART1 by reading BRR (0x120 = 250000 @72MHz); USART2=19200 (likely TMC2209 UART on PA2), USART3=115200 (ESP32).
+
 ## Klipper build settings (provisional)
 
 ```

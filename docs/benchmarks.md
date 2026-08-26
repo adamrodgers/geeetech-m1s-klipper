@@ -41,6 +41,7 @@ Ellis TEST_SPEED, comparing mcu stepper positions before/after (skip = delta > 1
 | 600 | 20000 | 0 | 0 | pass |
 | 600 | 25000 | 1 | 2 | pass |
 | 750 | 25000 | 1 | 2 | pass |
+| 800 | 32000 | ok | ok | pass |
 | 700 | 30000 | ok | ok | pass |
 | 700 | 32000 | ok | ok | pass |
 | 700 | 34000 | - | - | MARGINAL (3 iters ok, skipped on 4th) |

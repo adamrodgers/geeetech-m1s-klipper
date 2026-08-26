@@ -52,6 +52,10 @@ If the CH340 is on a different USART this will not work; fall back to SWD.
 
 If the dump shows a Geeetech bootloader, it probably looks for a fixed filename on the SD root. Candidates from their other products: `firmware.bin`, `GTM32.bin`, `M1.bin`. The strings in the bootloader region of the dump will say. If present, Klipper goes on as a renamed `klipper.bin` at the right offset with no extra hardware.
 
+## Backup taken (2026-08-25)
+
+Done over SWD from the Pi (H1 header, GND was the gotcha - no shared ground gives OpenOCD "cannot read IDR"; confirm with `gpioget gpiochip0 24 25 23` reading `1 0 1`). Device id 0x0aa414, 512 KiB, read protection OFF, no write protection. Dump verified (two matching reads) and stored in `firmware/`. The USB ROM-bootloader route (MCU-BOOT jumper) was tried and does NOT work: the MCU boots to the ROM loader (screen stays dark) but its UART is muxed to the ESP32, not the CH340, so stm32flash times out at every baud. SWD is the only working path.
+
 ## Klipper build settings (provisional)
 
 ```

@@ -1,0 +1,36 @@
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/adam/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	192.168.1.0/24
+	127.0.0.1
+cors_domains = 
+	http://*.local
+
+[file_manager]
+enable_object_processing = True
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+refresh_interval = 168
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager Klipper-Adaptive-Meshing-Purging]
+type = git_repo
+channel = dev
+path = ~/Klipper-Adaptive-Meshing-Purging
+origin = https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git
+managed_services = klipper
+primary_branch = main
+

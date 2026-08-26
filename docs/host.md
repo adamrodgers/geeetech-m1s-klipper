@@ -6,7 +6,7 @@
 | OS | Raspberry Pi OS Lite 64-bit (Bookworm, 2025-05-13 image) |
 | Hostname / IP | `m1s.local` / 192.168.1.154 (DHCP) |
 | Login | user `adam`, SSH key auth (password `m1sprinter` as fallback) |
-| Boot media | 61 GB USB thumb drive (staying; a 4 GB card is too small - see below) |
+| Boot media | 128 GB microSD (cloned from the thumb drive 2026-08-25; the 61 GB USB drive is now a spare/backup) |
 | Web UI | Mainsail at http://m1s.local (nginx on 80, Moonraker API on 7125) |
 | Services | `klipper`, `moonraker`, `nginx` (systemd, enabled) |
 | Config dir | `~/printer_data/config/` - `printer.cfg` and `macros.cfg` deployed from this repo's `config/` |

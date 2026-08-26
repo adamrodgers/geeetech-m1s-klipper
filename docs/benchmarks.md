@@ -41,9 +41,11 @@ Ellis TEST_SPEED, comparing mcu stepper positions before/after (skip = delta > 1
 | 600 | 20000 | 0 | 0 | pass |
 | 600 | 25000 | 1 | 2 | pass |
 | 750 | 25000 | 1 | 2 | pass |
-| 700 | 35000 | - | - | SKIPPED (aborted, power-cycled) |
+| 700 | 30000 | ok | ok | pass |
+| 700 | 32000 | ok | ok | pass |
+| 700 | 35000 | - | - | SKIPPED |
 
-Ceiling is between accel 25000 (pass) and 35000 (fail); speed fine to 750+. Next test: SPEED=700 ACCEL=30000.
+Ceiling is between accel 32000 (pass) and 35000 (fail); speed fine to 750+. Next test: SPEED=700 ACCEL=34000.
 
 ## Tuning plan / method
 

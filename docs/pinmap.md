@@ -8,34 +8,36 @@ Source key: **M** = measured with a meter/scope, **D** = derived from Marlin out
 
 | Function | STEP | DIR | EN | UART | Driver | Src |
 |---|---|---|---|---|---|---|
-| X | | | | addr 0, no response | TMC2209 | D |
-| Y | | | | addr 3, works | TMC2209 | D |
-| Z | | | | - | 4988ET | D |
-| E | | | | - | 4988ET | D |
+| X | ? | ? | PB0 | addr 0, no response | TMC2209 | M(EN) |
+| Y | ? | ? | PC7 | addr 3, works | TMC2209 | M(EN) |
+| Z | ? | ? | PC13 | - | 4988ET | M(EN) |
+| E | ? | ? | PB7 | - | 4988ET | M(EN) |
+
+STEP/DIR pins still ?: they only toggle during motion, which is unsafe with the SWD wires attached. Extract from the firmware dump (firmware/m1s-stock-mcu-flash.bin) instead.
 
 ## Endstops and probe
 
 | Function | Pin | Pull / polarity | Src |
 |---|---|---|---|
-| X endstop (`X_MIN` on ribbon, but Marlin homes X to **max**) | | | D |
-| Y_MIN | | | |
-| Z_MIN (base microswitch) | | | |
-| `Level` (probe trigger from head MCU) | | Marlin `z_probe`, reads open at rest | D |
-| `Zero` (tare output to head MCU) | | | |
-| Filament runout | | reads TRIGGERED with filament loaded | D |
+| X endstop (head switch, homes to max) | PB4 | | M |
+| Y endstop | PC14 | | M |
+| Z endstop (frame reference button) | PD6 | | M |
+| `Level` (probe trigger, Marlin z_probe) | ? | needs arming to test live; get from binary | - |
+| `Zero` (tare output to head MCU) | ? | get from binary | - |
+| Filament runout | PA15 | | M |
 
 ## Heaters, thermistors, fans
 
 | Function | Pin | Notes | Src |
 |---|---|---|---|
-| Hotend heater `HED` | | MOSFET on mainboard, via ribbon | |
-| Bed heater | | | |
-| TH0 (hotend) | | ADC | |
-| TH1 | | ADC, purpose unknown | |
-| TB (bed) | | ADC | |
-| FAN1 | | | |
-| FAN2 | | | |
-| Mainboard fan | | | |
+| Hotend heater `HED` | PB9 | | M |
+| Bed heater | PE0 | | M |
+| TH0 (hotend) | PC0 or PC1 | analog; assign by heating | M |
+| Bed thermistor | PC0 or PC1 | the other of the two | M |
+| (only two analog pins exist: PC0, PC1) | | | M |
+| Part cooling fan | PE1 | | M |
+| Hotend fan (auto, on with hotend temp) | PB8 | | M |
+| (mainboard has no separate controllable fan pin found) | | | |
 
 ## Misc
 
@@ -43,8 +45,8 @@ Source key: **M** = measured with a meter/scope, **D** = derived from Marlin out
 |---|---|---|
 | USART to CH340 (TX/RX) | PA9/PA10 | G (250000 baud confirmed) |
 | USART to ESP32 header | | |
-| Buzzer | | |
-| LED | | |
+| Buzzer | ? (PWM, not caught) | M300 |
+| Case light | PB15 | M |
 | TFT SPI (SCK/MOSI/CS/DC/RST/BL) | | |
 | Encoder A/B/button | | |
 | SD card SPI or SDIO | | |

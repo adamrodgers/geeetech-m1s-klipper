@@ -1,0 +1,17 @@
+{
+    "type": "filament",
+    "name": "Generic PLA @M1S",
+    "from": "User",
+    "inherits": "Generic PLA @System",
+    "instantiation": "true",
+    "version": "2.4.0.2",
+    "compatible_printers": ["Geeetech M1S 0.4 nozzle"],
+    "nozzle_temperature": ["200"],
+    "nozzle_temperature_initial_layer": ["200"],
+    "hot_plate_temp": ["60"],
+    "hot_plate_temp_initial_layer": ["60"],
+    "filament_max_volumetric_speed": ["10"],
+    "filament_flow_ratio": ["0.98"],
+    "pressure_advance": ["0.04"],
+    "enable_pressure_advance": ["1"]
+}

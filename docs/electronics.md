@@ -19,6 +19,9 @@
 | U5 | **ESP32-WROOM-32E** (Espressif, MGN4 lot) | Soldered to the mainboard, PCB antenna over the board edge. |
 | U6, U7 | TI `CL257 D7M` (TSSOP-16) x2 | TI marking for **SN74CBTLV3257** / `74*257`-family quad 2:1 mux. Two of them = 8 switched lines. Sitting between the MCU, the JTAG header and the ESP32, the obvious use is routing the MCU's UART (and possibly JTAG/boot lines) between the CH340 and the ESP32 under control of a GPIO or the `H2` jumper. Unverified. |
 | U3 | AMS1117-3.3 | 3.3 V LDO |
+| U2 | **Winbond W25Q64JV** 8 MB SPI flash, next to `H1` | External storage - likely Marlin's EEPROM backend (the `V88` 773-byte settings) and/or power-loss resume state. Not dumpable over SWD directly; not needed for the Klipper conversion. |
+| U8, U11 | TMC2209-LA (`2502 A271A`) | X and Y drivers |
+| U9, U10 | `4988ET 2032 029L` | Z and E drivers |
 | U? | Buzzer, 3 white LEDs, a 40 mm fan over the MCU/driver area | The LEDs on the board edge are the case light. |
 
 Headers and jumpers seen so far:
@@ -26,7 +29,8 @@ Headers and jumpers seen so far:
 | Label | Pins | Purpose |
 |---|---|---|
 | `J6` | `TDO TCK TDI TMS` (unpopulated holes) | JTAG. Superseded by `H1` below for SWD use. |
-| `H1` | populated 2x3 right-angle header at the corner near the crystal | **SWD header, the flash-dump connection.** Top row silkscreen `V G G`; bottom row partly hidden but ends in `R` - expected layout matches the M1's MCU-J-LINK: `3.3V DIO / GND CLK / GND RST`. Confirm the hidden labels before wiring. |
+| `H1` | populated 2x3 right-angle header by the crystal | **SWD header** (confirmed 2026-08-25): top row `V G G`, bottom row `D C R` = `3.3V/DIO GND/CLK GND/RST`. |
+| `J1 MCU-BOOT` | populated 2-pin jumper below `H1` | **BOOT0** (by silkscreen name; M1 had the same). Bridge + power-cycle should enter the ROM UART bootloader. |
 | `J3` | `3.3 TX0 RX0 GND` (right-angle pins, next to `ESP-BOOT`) | ESP32 UART0 (its console / flashing port). |
 | `J4` | `3.3 TX2 RX2 GND` (unpopulated) | ESP32 UART2, most likely the link to the MCU. |
 | `J5` | `ESP-BOOT` 2-pin | ESP32 GPIO0 strap for flashing. |
@@ -36,7 +40,7 @@ Headers and jumpers seen so far:
 | `Z-MIN`, `Y-M`, `X-M`, `Z-M` | JSTs | Z endstop and motors. |
 | `J8` | 4-pin JST labelled `Y-M` | Y motor |
 
-Not yet seen on this board (need a photo of the rest of it): the fourth driver, the 16-way ribbon header to the printhead, bed heater MOSFET and `BED` terminals, bed thermistor, SD slot, the display connector, and whether there is a dedicated `BOOT0` jumper. `M503` still reports only two TMC channels (X, Y), so the driver mix is the same as the M1.
+Bottom edge (2026-08-25 photos): `TB`/`GND` bed thermistor, `BED+ BED-` heater output, `+24V GND` power input, `J17` `5.0V D- D+ GND` = USB from the rear-panel B jack, grey 16-way ribbon to the printhead, `Z-M` and `J8 Y_M` motor JSTs on the right edge, buzzer + 3 LEDs + SS34/buck power section. Still unphotographed: the TF slot and display connector details (both on the perpendicular daughterboard `H2` plugs into).
 
 Practical consequences:
 

@@ -8,10 +8,12 @@ Source key: **M** = measured with a meter/scope, **D** = derived from Marlin out
 
 | Function | STEP | DIR | EN | UART | Driver | Src |
 |---|---|---|---|---|---|---|
-| X | ? | PB12 | PB0 | addr 0, no response | TMC2209 | M |
-| Y | ? | PA0 | PC7 | addr 3, works | TMC2209 | M |
-| Z | ? | PC15 | PC13 | - | 4988ET | M |
-| E | ? | PE4 | PB7 | - | 4988ET | M |
+| X | PB3 or PB5 | PB12 | PB0 | addr 0, no response | TMC2209 | DIR/EN=M, STEP=candidate |
+| Y | PA1 (adj to DIR) or PA4/PA11 | PA0 | PC7 | addr 3, works | TMC2209 | DIR/EN=M, STEP=candidate |
+| Z | PC2/PC4/PC5/PC6 | PC15 | PC13 | - | 4988ET | DIR/EN=M, STEP=candidate |
+| E | PE2 or PE6 | PE4 | PB7 | - | 4988ET | DIR/EN=M, STEP=candidate |
+
+STEP candidates come from the unmapped push-pull output pins (config-register decode). STEP could NOT be caught live: pulses rest low and are ~2 us wide (~0.4% duty), invisible to slow SWD sampling, and STEP is not on the same port as its DIR. **Confirm each at bring-up:** with SWD off (motion allowed), set the candidate as step_pin and `STEPPER_BUZZ STEPPER=stepper_x` - the motor moves only with the right pin. All remaining unmapped outputs: PA1 PA4 PA11 PB3 PB5 PC2 PC4 PC5 PC6 PD3 PD7 PD13 PE2 PE6 (also include probe Zero/tare output, TFT/SPI, beeper, ESP32 UART).
 
 DIR + EN measured live (SWD ODR diff during small moves). STEP pins can't be caught by slow SWD polling (pulses rest low, ~2 us wide) - extract from firmware/m1s-stock-mcu-flash.bin by anchoring on the known DIR/EN pins.
 

@@ -8,12 +8,12 @@ Source key: **M** = measured with a meter/scope, **D** = derived from Marlin out
 
 | Function | STEP | DIR | EN | UART | Driver | Src |
 |---|---|---|---|---|---|---|
-| X | ? | ? | PB0 | addr 0, no response | TMC2209 | M(EN) |
-| Y | ? | ? | PC7 | addr 3, works | TMC2209 | M(EN) |
-| Z | ? | ? | PC13 | - | 4988ET | M(EN) |
-| E | ? | ? | PB7 | - | 4988ET | M(EN) |
+| X | ? | PB12 | PB0 | addr 0, no response | TMC2209 | M |
+| Y | ? | PA0 | PC7 | addr 3, works | TMC2209 | M |
+| Z | ? | PC15 | PC13 | - | 4988ET | M |
+| E | ? | PE4 | PB7 | - | 4988ET | M |
 
-STEP/DIR pins still ?: they only toggle during motion, which is unsafe with the SWD wires attached. Extract from the firmware dump (firmware/m1s-stock-mcu-flash.bin) instead.
+DIR + EN measured live (SWD ODR diff during small moves). STEP pins can't be caught by slow SWD polling (pulses rest low, ~2 us wide) - extract from firmware/m1s-stock-mcu-flash.bin by anchoring on the known DIR/EN pins.
 
 ## Endstops and probe
 

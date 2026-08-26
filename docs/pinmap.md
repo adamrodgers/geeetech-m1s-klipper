@@ -58,3 +58,12 @@ DIR + EN measured live (SWD ODR diff during small moves). STEP pins can't be cau
 1. Marlin: `M122` done (see probe log). `M43` is not compiled in, so pin numbers have to come from the hardware or from the firmware dump.
 2. If `M43` is compiled out, disassemble the stock dump around the GPIO init calls, or just meter it: every driver has STEP/DIR/EN pads next to it; beep from each to the MCU.
 3. For `Level` and `Zero`, follow the ribbon pins on the driver board to the MCU. Both should be plain GPIO, probably with a series resistor.
+
+## Probe Level/Zero hunt (pending)
+
+Load-cell probe via the printhead MCU: `Level` (trigger, input to mainboard MCU) and `Zero` (tare, output). Narrowed from the Marlin GPIO register capture to unmapped pins:
+
+- **Level candidates (inputs):** PA8, PA12, PB2, PB13, PB14, PC3, PD12, PE3, PE5
+- **Zero candidates (outputs):** PA4, PB5, PC2, PC4, PC6, PD3, PD7, PD13, PE2, PE6
+
+Plan: over SWD, pulse each Zero candidate (tare) and watch Level candidates for the head MCU's "ready pulse" (~2 s post-tare, no press needed - seen under Marlin after M401). Match = both pins. Then `[probe] pin:<Level>` + `[output_pin]` tare on `<Zero>` + re-enable `[bed_mesh]`.
